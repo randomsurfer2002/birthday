@@ -2,553 +2,409 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Akanksha Level 25 | Arcade Birthday Experience</title>
-    
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Fonts for Retro 8-bit & Arcade Typography -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Akanksha Nayak - Level 25 Cyberpunk Birthday</title>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
-    
-    <!-- Page Flip Library for True 3D Page Curling & Dragging -->
-    <script src="https://cdn.jsdelivr.net/npm/page-flip@0.8.0/dist/js/page-flip.browser.js"></script>
-    
-    <!-- FontAwesome Pixel/Arcade Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <style>
         :root {
-            --neon-pink: #ff0055;
-            --neon-cyan: #00f0ff;
-            --neon-gold: #ffd700;
-            --neon-purple: #7b2cbf;
-            --bg-dark: #0a0a10;
+            --bg-color: #0b061a;
+            --neon-pink: #ff2a85;
+            --neon-cyan: #05d9e8;
+            --neon-yellow: #ffde59;
+            --neon-purple: #b967ff;
+            --dark-card: #150b2e;
         }
 
-        body {
-            background-color: var(--bg-dark);
-            color: #ffffff;
-            font-family: 'VT323', monospace;
-            overflow-x: hidden;
-            letter-spacing: 0.5px;
-        }
-
-        .font-pixel {
-            font-family: 'Press Start 2P', cursive;
-        }
-
-        /* Pixel borders & hard shadow utilities */
-        .pixel-box {
-            background: rgba(16, 16, 26, 0.95);
-            border: 4px solid var(--neon-cyan);
-            box-shadow: 6px 6px 0px #000, 0 0 15px rgba(0, 240, 255, 0.3);
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
             image-rendering: pixelated;
         }
 
-        .pixel-box-pink {
-            background: rgba(26, 10, 20, 0.95);
-            border: 4px solid var(--neon-pink);
-            box-shadow: 6px 6px 0px #000, 0 0 15px rgba(255, 0, 85, 0.35);
-        }
-
-        .pixel-btn {
-            font-family: 'Press Start 2P', cursive;
-            transition: all 0.15s ease;
+        body {
+            background-color: var(--bg-color);
+            color: #ffffff;
+            font-family: 'VT323', monospace;
+            overflow-x: hidden;
             position: relative;
-            box-shadow: 4px 4px 0px #000;
-            cursor: pointer;
-            user-select: none;
         }
 
-        .pixel-btn:hover {
-            transform: translate(-2px, -2px);
-            box-shadow: 6px 6px 0px #000;
-        }
-
-        .pixel-btn:active {
-            transform: translate(2px, 2px);
-            box-shadow: 2px 2px 0px #000;
-        }
-
-        /* CRT Overlay Effect */
-        .crt-overlay {
+        /* CRT Scanlines Overlay */
+        body::after {
+            content: " ";
+            display: block;
             position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
+            top: 0; left: 0; bottom: 0; right: 0;
             background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+            z-index: 99999;
             background-size: 100% 4px, 6px 100%;
             pointer-events: none;
-            z-index: 99;
             opacity: 0.6;
         }
 
-        /* Floating Pixel Balloons Keyframes */
-        @keyframes float-balloon {
-            0%, 100% { transform: translateY(0px) rotate(-3deg); }
-            50% { transform: translateY(-18px) rotate(3deg); }
+        header {
+            text-align: center;
+            padding: 30px 20px;
+            background: linear-gradient(180deg, #1b0c3d 0%, var(--bg-color) 100%);
+            border-bottom: 4px solid var(--neon-cyan);
+            position: relative;
         }
 
-        .animate-balloon {
-            animation: float-balloon 4s ease-in-out infinite;
+        .pixel-font {
+            font-family: 'Press Start 2P', cursive;
         }
 
-        .animate-balloon-delayed {
-            animation: float-balloon 5s ease-in-out infinite 1.5s;
+        h1 {
+            font-size: clamp(1rem, 3vw, 1.8rem);
+            color: var(--neon-yellow);
+            text-shadow: 3px 3px var(--neon-pink);
+            margin-bottom: 10px;
         }
 
-        /* Pixel Candle Flame Animation */
-        @keyframes candle-flicker {
-            0%, 100% { transform: scale(1); opacity: 1; filter: drop-shadow(0 0 8px #ffd700); }
-            25% { transform: scale(1.15, 0.9) rotate(2deg); opacity: 0.85; }
-            50% { transform: scale(0.9, 1.2) rotate(-2deg); opacity: 1; }
-            75% { transform: scale(1.1, 1.05); opacity: 0.9; }
+        .subtitle {
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
+            color: var(--neon-cyan);
+            letter-spacing: 2px;
+            text-shadow: 2px 2px var(--neon-purple);
         }
 
-        .candle-flame {
-            animation: candle-flicker 0.6s infinite alternate;
+        /* Hero Container */
+        .hero-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px 15px;
+            text-align: center;
         }
 
-        /* StPageFlip Styling Adjustments */
-        .stpageflip-container {
+        .portrait-frame {
+            border: 4px solid var(--neon-pink);
+            box-shadow: 0 0 20px var(--neon-pink), inset 0 0 15px var(--neon-cyan);
+            padding: 8px;
+            background: var(--dark-card);
+            border-radius: 8px;
+            margin-bottom: 25px;
+            max-width: 320px;
+            width: 100%;
+        }
+
+        .portrait-frame img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 4px;
+        }
+
+        /* Celebrate Button */
+        .arcade-btn {
+            background-color: var(--neon-pink);
+            color: #fff;
+            font-family: 'Press Start 2P', cursive;
+            font-size: clamp(0.7rem, 2vw, 1rem);
+            padding: 15px 30px;
+            border: 4px solid var(--neon-yellow);
+            box-shadow: 0 6px 0 #8b0046, 0 0 15px var(--neon-pink);
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.1s ease;
+            margin: 20px 0;
+            display: inline-block;
+        }
+
+        .arcade-btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0 #8b0046, 0 0 10px var(--neon-pink);
+        }
+
+        /* Magazine 3D Flip Container */
+        .magazine-section {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background: var(--dark-card);
+            border: 4px solid var(--neon-purple);
+            box-shadow: 0 0 30px rgba(185, 103, 255, 0.3);
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .magazine-title {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.1rem;
+            color: var(--neon-cyan);
+            margin-bottom: 20px;
+            text-shadow: 2px 2px var(--neon-pink);
+        }
+
+        /* 3D Flip Book Wrapper */
+        .book-container {
+            perspective: 1500px;
+            width: 100%;
+            max-width: 550px;
             margin: 0 auto;
-            max-width: 100%;
-            box-shadow: 0 0 30px rgba(0, 240, 255, 0.25);
+            min-height: 480px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        /* Canvas Overlay for Fireworks */
-        #fxCanvas {
+        .book-page {
+            width: 100%;
+            background: #000;
+            border: 3px solid var(--neon-yellow);
+            box-shadow: 0 0 20px rgba(255, 222, 89, 0.3);
+            border-radius: 6px;
+            transform-origin: left center;
+            transition: transform 0.6s cubic-bezier(0.645, 0.045, 0.355, 1), opacity 0.6s;
+            backface-visibility: hidden;
+            display: block;
+        }
+
+        .book-page.flip-out-next {
+            transform: rotateY(-180deg);
+            opacity: 0;
+        }
+
+        .book-page.flip-out-prev {
+            transform: rotateY(180deg);
+            opacity: 0;
+        }
+
+        .magazine-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .nav-btn {
+            background-color: var(--neon-cyan);
+            color: #0b061a;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.7rem;
+            padding: 12px 22px;
+            border: 3px solid var(--neon-yellow);
+            cursor: pointer;
+            box-shadow: 0 4px 0 #007a85;
+            transition: all 0.1s;
+        }
+
+        .nav-btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #007a85;
+        }
+
+        .page-indicator {
+            font-size: 1.5rem;
+            color: var(--neon-yellow);
+            letter-spacing: 2px;
+        }
+
+        /* Particle Canvas */
+        #fx-canvas {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100vw;
-            height: 100vh;
+            width: 100%;
+            height: 100%;
             pointer-events: none;
-            z-index: 100;
+            z-index: 9999;
         }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0a0a10;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--neon-pink);
-            border-radius: 0px;
+        footer {
+            text-align: center;
+            padding: 30px;
+            font-size: 1.2rem;
+            color: var(--neon-purple);
+            border-top: 2px solid #20104d;
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between relative selection:bg-pink-500 selection:text-white">
+<body>
 
-    <div id="crtOverlay" class="crt-overlay"></div>
-    <canvas id="fxCanvas"></canvas>
+    <canvas id="fx-canvas"></canvas>
 
-    <!-- TOP HEADER / STATUS HUD -->
-    <header class="sticky top-0 z-50 bg-[#0a0a10]/90 backdrop-blur-md border-b-4 border-[#ff0055] px-4 py-3">
-        <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between text-xs sm:text-sm font-pixel text-cyan-300 gap-2">
-            <div class="flex items-center gap-3">
-                <span class="inline-block w-3 h-3 bg-red-500 rounded-full animate-ping"></span>
-                <span>PLAYER 1: <span class="text-pink-400">AKANKSHA</span></span>
-            </div>
-            <div class="flex items-center gap-4 text-[#ffd700]">
-                <span>LEVEL 25 UNLOCKED 🔓</span>
-                <span class="hidden md:inline text-purple-400">CLASS: DOCTOR 🩺</span>
-            </div>
-            <button id="toggleCrtBtn" class="text-[10px] bg-gray-800 hover:bg-gray-700 text-gray-200 px-2 py-1 border-2 border-gray-500">
-                CRT: ON
-            </button>
-        </div>
+    <header>
+        <h1 class="pixel-font">⭐ DR. AKANKSHA NAYAK ⭐</h1>
+        <p class="subtitle pixel-font">LEVEL 25 UNLOCKED • OCT 11, 2026</p>
     </header>
 
-    <main class="flex-grow container mx-auto px-4 py-6 max-w-5xl space-y-16">
-
-        <!-- HERO SECTION: CYBERPUNK PIXEL BIRTHDAY STAGE -->
-        <section class="text-center relative pt-4 pb-8 flex flex-col items-center">
-            
-            <!-- Floating Pixel Balloons Left & Right -->
-            <div class="hidden lg:block absolute left-0 top-10 animate-balloon pointer-events-none select-none">
-                <svg width="80" height="120" viewBox="0 0 80 120" fill="none">
-                    <rect x="20" y="10" width="40" height="50" fill="#ff0055"/>
-                    <rect x="15" y="20" width="50" height="30" fill="#ff0055"/>
-                    <rect x="25" y="15" width="10" height="10" fill="#ffb6c1"/>
-                    <rect x="35" y="60" width="10" height="5" fill="#d00040"/>
-                    <path d="M40 65 Q 30 85 45 110" stroke="#ffffff" stroke-width="3" fill="none"/>
-                </svg>
-            </div>
-            <div class="hidden lg:block absolute right-0 top-16 animate-balloon-delayed pointer-events-none select-none">
-                <svg width="80" height="120" viewBox="0 0 80 120" fill="none">
-                    <rect x="20" y="10" width="40" height="50" fill="#00f0ff"/>
-                    <rect x="15" y="20" width="50" height="30" fill="#00f0ff"/>
-                    <rect x="25" y="15" width="10" height="10" fill="#e0ffff"/>
-                    <rect x="35" y="60" width="10" height="5" fill="#00a8b5"/>
-                    <path d="M40 65 Q 50 85 35 110" stroke="#ffffff" stroke-width="3" fill="none"/>
-                </svg>
-            </div>
-
-            <!-- Arcade Title -->
-            <h1 class="font-pixel text-2xl sm:text-4xl md:text-5xl text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-cyan-300 to-yellow-300 leading-tight mb-6 drop-shadow-[0_4px_10px_rgba(255,0,85,0.6)]">
-                HAPPY 25TH BIRTHDAY<br>AKANKSHA!
-            </h1>
-
-            <!-- Central Pixel Artwork Frame -->
-            <div class="relative group my-4">
-                <div class="pixel-box-pink p-2 sm:p-4 max-w-xs sm:max-w-sm mx-auto bg-black/80 transition-transform duration-300 group-hover:scale-105">
-                    <div class="relative overflow-hidden aspect-square border-2 border-dashed border-pink-400/50 bg-[#120024] flex items-center justify-center">
-                        <img id="pixelPortrait" 
-                             src="assets/pixel_portrait.png" 
-                             alt="Akanksha Pixel Art Portrait" 
-                             class="w-full h-full object-cover image-rendering-pixelated"
-                             onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'p-6 text-center\'><i class=\'fa-solid font-pixel text-5xl text-pink-500 mb-2\'>&#xf118;</i><p class=\'font-pixel text-xs text-cyan-300\'>AKANKSHA NAYAK</p><p class=\'text-yellow-400 text-lg mt-1\'>★ LEVEL 25 QUEEN ★</p></div>';">
-                    </div>
-                    <div class="mt-3 bg-black/70 p-2 border border-pink-500/40 text-center">
-                        <p class="font-pixel text-[10px] text-pink-300">PLAYER PORTRAIT // 11 OCT 2001</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Interactive Pixel Birthday Cake -->
-            <div class="my-6 flex flex-col items-center">
-                <!-- Candles with flickering flame -->
-                <div class="flex gap-4 mb-[-6px] z-10">
-                    <div class="relative flex flex-col items-center">
-                        <div class="w-3 h-4 bg-yellow-400 rounded-t-full candle-flame"></div>
-                        <div class="w-2 h-6 bg-pink-500 border border-white"></div>
-                    </div>
-                    <div class="relative flex flex-col items-center">
-                        <div class="w-3 h-4 bg-cyan-300 rounded-t-full candle-flame" style="animation-delay: 0.2s;"></div>
-                        <div class="w-2 h-6 bg-purple-500 border border-white"></div>
-                    </div>
-                    <div class="relative flex flex-col items-center">
-                        <div class="w-3 h-4 bg-yellow-400 rounded-t-full candle-flame" style="animation-delay: 0.4s;"></div>
-                        <div class="w-2 h-6 bg-pink-500 border border-white"></div>
-                    </div>
-                </div>
-                <!-- 2-Tier Pixel Cake -->
-                <div class="w-32 h-8 bg-pink-600 border-2 border-white flex justify-around items-center px-2">
-                    <span class="w-2 h-2 bg-yellow-300"></span>
-                    <span class="w-2 h-2 bg-cyan-300"></span>
-                    <span class="w-2 h-2 bg-yellow-300"></span>
-                </div>
-                <div class="w-48 h-10 bg-purple-800 border-2 border-white flex justify-between items-center px-4">
-                    <span class="text-xs text-pink-300 font-pixel">2</span>
-                    <span class="text-xs text-yellow-300 font-pixel">★ 25 ★</span>
-                    <span class="text-xs text-pink-300 font-pixel">5</span>
-                </div>
-            </div>
-
-            <!-- Scroll Down CTA -->
-            <a href="#magazine-section" class="pixel-btn bg-cyan-500 text-black px-6 py-3 font-pixel text-xs sm:text-sm mt-4 hover:bg-cyan-400 inline-flex items-center gap-2">
-                <span>SCROLL TO MAGAZINE</span>
-                <i class="fa-solid fa-arrow-down"></i>
-            </a>
-        </section>
-
-        <!-- MAGAZINE FLIPBOOK SECTION -->
-        <section id="magazine-section" class="pt-8">
-            <div class="text-center mb-8">
-                <h2 class="font-pixel text-xl sm:text-3xl text-cyan-300 mb-2 flex items-center justify-center gap-3">
-                    <i class="fa-solid fa-book-open text-pink-500"></i>
-                    SPECIAL EDITION MEMORY MAGAZINE
-                </h2>
-                <p class="text-lg text-gray-300">Drag corners or click buttons to flip through pages 📖</p>
-            </div>
-
-            <!-- Outer Responsive Box for Magazine -->
-            <div class="pixel-box p-3 sm:p-6 bg-[#0d0d18]">
-                
-                <!-- StPageFlip Interactive Container -->
-                <div class="flex justify-center items-center overflow-hidden min-h-[400px] sm:min-h-[580px]">
-                    <div id="magazineBook" class="stpageflip-container">
-                        
-                        <!-- Page 1: Cover Page -->
-                        <div class="page bg-slate-900 border border-gray-800 shadow-inner">
-                            <img src="assets/page1.png" alt="Magazine Page 1" class="w-full h-full object-contain bg-black" onerror="handleImgError(this, 1, 'Vogue Cover - Pure Radiance')">
-                        </div>
-                        
-                        <!-- Page 2: Bio Spread -->
-                        <div class="page bg-slate-900 border border-gray-800">
-                            <img src="assets/page2.png" alt="Magazine Page 2" class="w-full h-full object-contain bg-black" onerror="handleImgError(this, 2, 'Hello I\'m Akanksha Nayak - 11 Oct 2001')">
-                        </div>
-
-                        <!-- Page 3: Her Favorite Things -->
-                        <div class="page bg-slate-900 border border-gray-800">
-                            <img src="assets/page3.png" alt="Magazine Page 3" class="w-full h-full object-contain bg-black" onerror="handleImgError(this, 3, 'Her Favorite Things')">
-                        </div>
-
-                        <!-- Page 4: Favorites & Moodboard -->
-                        <div class="page bg-slate-900 border border-gray-800">
-                            <img src="assets/page4.png" alt="Magazine Page 4" class="w-full h-full object-contain bg-black" onerror="handleImgError(this, 4, 'Chicken is love, Splitsvilla, Rikhari')">
-                        </div>
-
-                        <!-- Page 5: Fashion Feature -->
-                        <div class="page bg-slate-900 border border-gray-800">
-                            <img src="assets/page5.png" alt="Magazine Page 5" class="w-full h-full object-contain bg-black" onerror="handleImgError(this, 5, 'Style On Point')">
-                        </div>
-
-                        <!-- Page 6: Fashion Moodboard -->
-                        <div class="page bg-slate-900 border border-gray-800">
-                            <img src="assets/page6.png" alt="Magazine Page 6" class="w-full h-full object-contain bg-black" onerror="handleImgError(this, 6, 'Favorite Brands & Aesthetics')">
-                        </div>
-
-                        <!-- Page 7: Travel Feature -->
-                        <div class="page bg-slate-900 border border-gray-800">
-                            <img src="assets/page7.png" alt="Magazine Page 7" class="w-full h-full object-contain bg-black" onerror="handleImgError(this, 7, 'Travel Paglu - Wandering Souls')">
-                        </div>
-
-                        <!-- Page 8: Polaroid Photo Grid -->
-                        <div class="page bg-slate-900 border border-gray-800">
-                            <img src="assets/page8.png" alt="Magazine Page 8" class="w-full h-full object-contain bg-black" onerror="handleImgError(this, 8, 'XOXO Summer Memories Grid')">
-                        </div>
-
-                        <!-- Page 9: Friends Feature 1 -->
-                        <div class="page bg-slate-900 border border-gray-800">
-                            <img src="assets/page9.png" alt="Magazine Page 9" class="w-full h-full object-contain bg-black" onerror="handleImgError(this, 9, 'F.R.I.E.N.D.S - Inke bina iska kya hoga?')">
-                        </div>
-
-                        <!-- Page 10: Friends Collage 2 -->
-                        <div class="page bg-slate-900 border border-gray-800">
-                            <img src="assets/page10.png" alt="Magazine Page 10" class="w-full h-full object-contain bg-black" onerror="handleImgError(this, 10, 'Friends & Good Times Spread')">
-                        </div>
-
-                        <!-- Page 11: Back Cover Friends Collage 3 -->
-                        <div class="page bg-slate-900 border border-gray-800">
-                            <img src="assets/page11.png" alt="Magazine Page 11" class="w-full h-full object-contain bg-black" onerror="handleImgError(this, 11, 'Back Cover - Memory Collage')">
-                        </div>
-
-                    </div>
-                </div>
-
-                <!-- Navigation Controls -->
-                <div class="mt-6 flex flex-wrap items-center justify-between gap-4 border-t border-gray-800 pt-4 px-2">
-                    <button id="prevBtn" class="pixel-btn bg-pink-600 text-white px-4 py-2 text-xs font-pixel hover:bg-pink-500">
-                        ◄ PREV PAGE
-                    </button>
-                    
-                    <div class="font-pixel text-xs text-yellow-400 bg-black/60 px-4 py-2 border border-yellow-500/40 rounded">
-                        <span id="pageIndicator">PAGE 1 OF 11</span>
-                    </div>
-
-                    <div class="flex gap-2">
-                        <button id="zoomBtn" class="pixel-btn bg-purple-600 text-white px-3 py-2 text-xs font-pixel hover:bg-purple-500" title="Toggle Fullscreen Zoom">
-                            <i class="fa-solid fa-expand"></i>
-                        </button>
-                        <button id="nextBtn" class="pixel-btn bg-cyan-500 text-black px-4 py-2 text-xs font-pixel hover:bg-cyan-400">
-                            NEXT PAGE ►
-                        </button>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- FINALE CELEBRATION SECTION -->
-        <section class="text-center py-12 px-4 bg-gradient-to-b from-transparent via-purple-950/20 to-pink-950/30 rounded-2xl border border-pink-500/20">
-            <h3 class="font-pixel text-lg sm:text-2xl text-yellow-300 mb-4">READY TO CELEBRATE LEVEL 25?</h3>
-            <p class="text-xl text-gray-300 mb-8 max-w-xl mx-auto">Press the big arcade button below to unleash the pixel birthday fireworks and confetti explosion!</p>
-            
-            <button id="celebrateBtn" class="pixel-btn bg-gradient-to-r from-pink-500 via-purple-600 to-cyan-500 text-white px-8 py-5 text-sm sm:text-lg font-pixel rounded-none border-4 border-white shadow-[0_0_25px_rgba(255,0,85,0.8)] hover:brightness-125">
-                ▶ CELEBRATE LEVEL 25! ✨
-            </button>
-        </section>
-
-    </main>
-
-    <!-- RETRO ACHIEVEMENT MODAL POPUP -->
-    <div id="achievementModal" class="fixed inset-0 bg-black/85 z-[105] hidden flex items-center justify-center p-4">
-        <div class="pixel-box-pink max-w-lg w-full p-6 bg-[#0f0a18] text-center space-y-6 animate-bounce-short">
-            <div class="inline-block bg-yellow-400 text-black p-3 rounded-full text-3xl mb-2">
-                🏆
-            </div>
-            <h3 class="font-pixel text-sm sm:text-base text-yellow-300 leading-relaxed">
-                ACHIEVEMENT UNLOCKED:<br>LEVEL 25 COMPLETE!
-            </h3>
-            <div class="p-4 bg-black/80 border border-pink-500/30 text-left space-y-3">
-                <p class="text-lg text-cyan-200">
-                    "Happy 25th Birthday Nikki! Wishing you endless love, peace, and success in everything you do." ❤️
-                </p>
-                <p class="text-right text-pink-400 font-pixel text-xs mt-4">
-                    - Made with love by Aaditya
-                </p>
-            </div>
-            <button id="closeModalBtn" class="pixel-btn bg-cyan-500 text-black px-6 py-2 text-xs font-pixel hover:bg-cyan-400">
-                CLOSE [X]
-            </button>
+    <div class="hero-container">
+        <div class="portrait-frame">
+            <img id="portrait-img" src="pixel_portrait.jpeg" alt="Dr. Akanksha Pixel Portrait" 
+                 onerror="if(this.src.endsWith('.jpeg')){this.src='pixel_portrait.jpg';} else {this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'300\'><rect width=\'300\' height=\'300\' fill=\'%23150b2e\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23ff2a85\' font-family=\'monospace\' font-size=\'16\'>pixel_portrait.jpeg / .jpg missing</text></svg>';}">
         </div>
+        <button class="arcade-btn" id="celebrate-btn">▶ CELEBRATE LEVEL 25! ✨</button>
     </div>
 
-    <!-- FOOTER -->
-    <footer class="border-t-2 border-gray-800 py-6 text-center text-gray-500 text-sm">
-        <p class="font-pixel text-[10px] text-gray-400">AKANKSHA'S 25TH BIRTHDAY EDITION • 2026</p>
+    <section class="magazine-section">
+        <h2 class="magazine-title">📖 VIRTUAL 3D FLIP MAGAZINE (13 PAGES)</h2>
+        <div class="book-container">
+            <img id="mag-page" class="book-page" src="page1.jpeg" alt="Magazine Spread" 
+                 onerror="handleImageError(this)">
+        </div>
+        <div class="magazine-controls">
+            <button class="nav-btn" id="prev-btn">◀ PREV</button>
+            <span class="page-indicator" id="page-indicator">PAGE 1 / 13</span>
+            <button class="nav-btn" id="next-btn">NEXT ▶</button>
+        </div>
+    </section>
+
+    <footer>
+        <p>Made with ❤️ by Aaditya for Akanksha</p>
     </footer>
 
     <script>
-        // Fallback generator for missing image assets
-        function handleImgError(imgElement, pageNum, caption) {
-            const parent = imgElement.parentElement;
-            parent.innerHTML = `
-                <div class="w-full h-full flex flex-col items-center justify-center p-6 text-center bg-[#120e24] border-2 border-pink-500/40">
-                    <i class="fa-solid fa-newspaper text-5xl text-pink-500 mb-3"></i>
-                    <h4 class="font-pixel text-xs text-cyan-300 mb-2">PAGE ${pageNum}</h4>
-                    <p class="font-pixel text-[10px] text-yellow-400">${caption}</p>
-                    <p class="text-xs text-gray-400 mt-4">[ Place assets/page${pageNum}.png in your repo ]</p>
-                </div>
-            `;
+        // Automatic JPEG extension fallback (.jpeg or .jpg)
+        function handleImageError(imgElem) {
+            if (imgElem.src.endsWith('.jpeg')) {
+                imgElem.src = imgElem.src.replace('.jpeg', '.jpg');
+            } else {
+                imgElem.src = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='800'><rect width='600' height='800' fill='%23150b2e'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' fill='%2305d9e8' font-family='monospace' font-size='18'>Upload page " + currentPage + " (.jpeg / .jpg)</text></svg>";
+            }
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            // --- 1. CRT TOGGLE ---
-            const crtOverlay = document.getElementById('crtOverlay');
-            const toggleCrtBtn = document.getElementById('toggleCrtBtn');
-            let crtOn = true;
+        // Magazine 3D Flip Navigation Logic
+        let currentPage = 1;
+        const totalPages = 13;
+        const magImg = document.getElementById('mag-page');
+        const pageIndicator = document.getElementById('page-indicator');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        let isAnimating = false;
 
-            toggleCrtBtn.addEventListener('click', () => {
-                crtOn = !crtOn;
-                crtOverlay.style.display = crtOn ? 'block' : 'none';
-                toggleCrtBtn.innerText = `CRT: ${crtOn ? 'ON' : 'OFF'}`;
-            });
+        function flipToPage(newPage, direction) {
+            if (isAnimating || newPage === currentPage) return;
+            isAnimating = true;
 
-            // --- 2. STPAGEFLIP INITIALIZATION ---
-            const pageFlip = new St.PageFlip(document.getElementById('magazineBook'), {
-                width: 380, // base page width
-                height: 520, // base page height
-                size: 'stretch',
-                minWidth: 280,
-                maxWidth: 550,
-                minHeight: 400,
-                maxHeight: 720,
-                maxShadowOpacity: 0.5,
-                showCover: true,
-                mobileScrollSupport: false
-            });
+            // Trigger 3D flip out animation
+            magImg.classList.add(direction === 'next' ? 'flip-out-next' : 'flip-out-prev');
 
-            // Load Pages
-            pageFlip.loadFromHTML(document.querySelectorAll('.page'));
+            setTimeout(() => {
+                currentPage = newPage;
+                magImg.src = `page${currentPage}.jpeg`;
+                pageIndicator.textContent = `PAGE ${currentPage} / ${totalPages}`;
 
-            // Update Page Counter indicator
-            pageFlip.on('flip', (e) => {
-                const totalPages = pageFlip.getPageCount();
-                const currentPage = e.data + 1;
-                document.getElementById('pageIndicator').innerText = `PAGE ${currentPage} OF ${totalPages}`;
-            });
-
-            // Page Navigation Buttons
-            document.getElementById('prevBtn').addEventListener('click', () => {
-                pageFlip.flipPrev();
-            });
-
-            document.getElementById('nextBtn').addEventListener('click', () => {
-                pageFlip.flipNext();
-            });
-
-            // Fullscreen Zoom Toggle
-            document.getElementById('zoomBtn').addEventListener('click', () => {
-                const container = document.getElementById('magazine-section');
-                if (!document.fullscreenElement) {
-                    container.requestFullscreen().catch(err => alert(`Error enabling fullscreen: ${err.message}`));
-                } else {
-                    document.exitFullscreen();
-                }
-            });
-
-            // --- 3. PIXEL FIREWORKS & CONFETTI ENGINE ---
-            const canvas = document.getElementById('fxCanvas');
-            const ctx = canvas.getContext('2d');
-            let particles = [];
-            let animationFrameId = null;
-
-            function resizeCanvas() {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-            }
-            window.addEventListener('resize', resizeCanvas);
-            resizeCanvas();
-
-            class PixelParticle {
-                constructor(x, y, color) {
-                    this.x = x;
-                    this.y = y;
-                    this.size = Math.floor(Math.random() * 6) + 4; // Pixel square size
-                    this.color = color;
-                    this.vx = (Math.random() - 0.5) * 12;
-                    this.vy = (Math.random() - 0.5) * 12 - 3;
-                    this.gravity = 0.15;
-                    this.alpha = 1;
-                    this.decay = Math.random() * 0.015 + 0.008;
-                }
-
-                update() {
-                    this.vx *= 0.98;
-                    this.vy += this.gravity;
-                    this.x += this.vx;
-                    this.y += this.vy;
-                    this.alpha -= this.decay;
-                }
-
-                draw(ctx) {
-                    ctx.save();
-                    ctx.globalAlpha = Math.max(0, this.alpha);
-                    ctx.fillStyle = this.color;
-                    ctx.fillRect(Math.floor(this.x), Math.floor(this.y), this.size, this.size);
-                    ctx.restore();
-                }
-            }
-
-            function triggerFireworks() {
-                const colors = ['#ff0055', '#00f0ff', '#ffd700', '#7b2cbf', '#ffffff', '#ff69b4'];
+                // Reset position for 3D flip in
+                magImg.style.transition = 'none';
+                magImg.style.transform = direction === 'next' ? 'rotateY(180deg)' : 'rotateY(-180deg)';
                 
-                // Launch 5 bursts across the screen
-                for (let b = 0; b < 5; b++) {
-                    setTimeout(() => {
-                        const burstX = Math.random() * canvas.width;
-                        const burstY = Math.random() * (canvas.height * 0.6) + canvas.height * 0.1;
-                        
-                        for (let i = 0; i < 70; i++) {
-                            const color = colors[Math.floor(Math.random() * colors.length)];
-                            particles.push(new PixelParticle(burstX, burstY, color));
-                        }
-                    }, b * 200);
-                }
+                setTimeout(() => {
+                    magImg.style.transition = 'transform 0.6s cubic-bezier(0.645, 0.045, 0.355, 1), opacity 0.6s';
+                    magImg.classList.remove('flip-out-next', 'flip-out-prev');
+                    magImg.style.transform = 'rotateY(0deg)';
+                    magImg.style.opacity = '1';
+                    isAnimating = false;
+                }, 50);
+            }, 300);
+        }
 
-                if (!animationFrameId) {
-                    animateParticles();
-                }
+        prevBtn.addEventListener('click', () => {
+            if (currentPage > 1) {
+                flipToPage(currentPage - 1, 'prev');
             }
-
-            function animateParticles() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                
-                for (let i = particles.length - 1; i >= 0; i--) {
-                    particles[i].update();
-                    particles[i].draw(ctx);
-                    if (particles[i].alpha <= 0) {
-                        particles.splice(i, 1);
-                    }
-                }
-
-                if (particles.length > 0) {
-                    animationFrameId = requestAnimationFrame(animateParticles);
-                } else {
-                    animationFrameId = null;
-                }
-            }
-
-            // --- 4. CELEBRATE BUTTON & MODAL ---
-            const celebrateBtn = document.getElementById('celebrateBtn');
-            const achievementModal = document.getElementById('achievementModal');
-            const closeModalBtn = document.getElementById('closeModalBtn');
-
-            celebrateBtn.addEventListener('click', () => {
-                triggerFireworks();
-                achievementModal.classList.remove('hidden');
-            });
-
-            closeModalBtn.addEventListener('click', () => {
-                achievementModal.classList.add('hidden');
-            });
         });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentPage < totalPages) {
+                flipToPage(currentPage + 1, 'next');
+            }
+        });
+
+        // Touch Swipe Support for Mobile
+        let touchStartX = 0;
+        magImg.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, {passive: true});
+
+        magImg.addEventListener('touchend', e => {
+            let touchEndX = e.changedTouches[0].screenX;
+            if (touchEndX < touchStartX - 40 && currentPage < totalPages) {
+                flipToPage(currentPage + 1, 'next');
+            }
+            if (touchEndX > touchStartX + 40 && currentPage > 1) {
+                flipToPage(currentPage - 1, 'prev');
+            }
+        }, {passive: true});
+
+        // Confetti & Fireworks Engine
+        const canvas = document.getElementById('fx-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor(x, y, color, isFirework = false) {
+                this.x = x;
+                this.y = y;
+                this.color = color;
+                this.size = Math.random() * 6 + 4;
+                const angle = Math.random() * Math.PI * 2;
+                const speed = isFirework ? (Math.random() * 8 + 2) : (Math.random() * 5 + 1);
+                this.vx = Math.cos(angle) * speed;
+                this.vy = Math.sin(angle) * speed;
+                this.gravity = 0.15;
+                this.alpha = 1;
+                this.decay = Math.random() * 0.02 + 0.015;
+            }
+            update() {
+                this.vx *= 0.96;
+                this.vy *= 0.96;
+                this.vy += this.gravity;
+                this.x += this.vx;
+                this.y += this.vy;
+                this.alpha -= this.decay;
+            }
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = Math.max(this.alpha, 0);
+                ctx.fillStyle = this.color;
+                ctx.fillRect(Math.floor(this.x), Math.floor(this.y), this.size, this.size);
+                ctx.restore();
+            }
+        }
+
+        function createBurst(x, y, isFirework = false) {
+            const colors = ['#ff2a85', '#05d9e8', '#ffde59', '#b967ff', '#ffffff'];
+            for (let i = 0; i < 40; i++) {
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                particles.push(new Particle(x, y, color, isFirework));
+            }
+        }
+
+        function triggerCelebration() {
+            for (let i = 0; i < 6; i++) {
+                setTimeout(() => {
+                    const rx = Math.random() * canvas.width;
+                    const ry = Math.random() * (canvas.height * 0.6) + (canvas.height * 0.2);
+                    createBurst(rx, ry, true);
+                }, i * 180);
+            }
+        }
+
+        document.getElementById('celebrate-btn').addEventListener('click', triggerCelebration);
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach((p, index) => {
+                p.update();
+                p.draw();
+                if (p.alpha <= 0) {
+                    particles.splice(index, 1);
+                }
+            });
+            requestAnimationFrame(animate);
+        }
+        animate();
     </script>
 </body>
 </html>
